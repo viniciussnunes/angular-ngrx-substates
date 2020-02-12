@@ -14,7 +14,10 @@ import * as fromSubitem from './states/reducers/item.reducer';
 
 @NgModule({
   imports: [
-    CommonModule
+    CommonModule,
+    StoreModule.forFeature('list', fromList),
+    StoreModule.forFeature('item', fromItem),
+    StoreModule.forFeature('subitem', fromSubitem)
   ],
   declarations: [
     ListComponent,
@@ -24,10 +27,7 @@ import * as fromSubitem from './states/reducers/item.reducer';
   providers: [
     ItemService,
     SubitemService,
-    ListService,
-    StoreModule.forFeature('list', fromList),
-    StoreModule.forFeature('item', fromItem),
-    StoreModule.forFeature('subitem', fromSubitem)
+    ListService
   ],
   exports: [
     ListComponent,
