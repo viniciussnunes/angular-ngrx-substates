@@ -20,22 +20,36 @@ export interface Subitem {
 export interface ListState {
   selectedList: List;
   allItens: Item[];
-}
-
-export interface ItemState {
-  selectedItem: List;
+  selectedItem: Item;
   allSubitens: Subitem[];
+  selectedSubitem: Subitem;
 }
 
-const selectList = (state: ListState) => state.selectedList;
-const selectAllItens = (state: ListState) => state.allItens;
-const selectItem = (state: ItemState) => state.selectedItem;
-const selectAllSubitens = (state: ItemState) => state.allSubitens;
+export const selectList = (state: ListState) => state.selectedList;
+export const selectItem = (state: ListState) => state.selectedItem;
+export const selectSubitem = (state: ListState) => state.selectedSubitem;
 
-export const selectSubitemViews = createSelector(
+export const selectItens = (state: ListState) => state.allItens;
+export const selectSubitens = (state: ListState) => state.allSubitens;
+
+export const selectItemComplete = createSelector(
   selectItem,
-  selectAllSubitens,
+  selectSubitens,
+  (item, subitens) => ({ ...item, subitens })
+);
+
+export const selectItensWithSubitens = createSelector(
+  selectItens,
+  selectSubitens,
   (itens, subitens) => {
-    return subitens.map(subitem => ({ ...subitem, item: selectItem }));
+    return itens.map(item => ({
+      ...item, subitens: subitens.filter(subitem => subitem.itemId === item.id)
+    }));
   }
+);
+
+export const selectListComplete = createSelector(
+  selectList,
+  selectItensWithSubitens,
+  (list, itens) => ({ ...list, itens })
 );
