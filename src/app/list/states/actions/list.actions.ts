@@ -2,12 +2,12 @@ import { createAction, props } from '@ngrx/store';
 
 export const updateList = createAction(
   '[List] Update',
-  props<{ list: any }>()
+  props<{ name: string }>()
 );
 
 export const updateListSuccess = createAction(
   '[List] Update Success',
-  props<{ list: any }>()
+  props<{ name: string }>()
 );
 
 export const updateListFailure = createAction(

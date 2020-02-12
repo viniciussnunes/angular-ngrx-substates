@@ -15,6 +15,5 @@ export const updateItens = createAction(
 );
 
 export const deleteSubitem = createAction(
-  '[Subitem] Delete',
-  props<{ id: string }>()
+  '[Subitem] Delete'
 );

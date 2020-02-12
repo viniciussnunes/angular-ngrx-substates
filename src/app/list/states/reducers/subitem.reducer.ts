@@ -2,21 +2,27 @@ import { Action, createReducer, on } from "@ngrx/store";
 import * as Actions from "../actions/subitem.actions";
 
 export interface State {
-  itens: any[];
+  subitens: any[];
   error: Error;
 }
 
 const initialState = {
-  itens: [],
+  subitens: [],
   error: undefined
 };
 
 const listReducer = createReducer(
   initialState,
-  on(Actions.addSubitem, (state, { subitem }) => ({ ...state, itens: [...state.itens, subitem] })),
+  on(Actions.addSubitem, (state, { subitem }) => ({
+    ...state,
+    subitens: [...state.subitens, subitem]
+  })),
   on(Actions.getItens, state => ({ ...state, state })),
-  on(Actions.updateItens, (state, { itens }) => ({ ...state, itens })),
-  on(Actions.deleteSubitem, (state, { id }) => ({ ...state, list: state.itens.filter(subitem => subitem.id !== id) }))
+  on(Actions.updateItens, (state, { subitens }) => ({ ...state, subitens })),
+  on(Actions.deleteSubitem, (state, { id }) => ({
+    ...state,
+    subitens: state.subitens.slice(0, state.subitens.length - 1)
+  }))
 );
 
 export function reducer(state: State | undefined, action: Action) {

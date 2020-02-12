@@ -15,9 +15,11 @@ import * as fromSubitem from './states/reducers/item.reducer';
 @NgModule({
   imports: [
     CommonModule,
-    StoreModule.forFeature('list', fromList),
-    StoreModule.forFeature('item', fromItem),
-    StoreModule.forFeature('subitem', fromSubitem)
+    StoreModule.forRoot({ 
+      list: fromList.reducer,
+      item: fromItem.reducer,
+      subitem: fromSubitem.reducer
+    })
   ],
   declarations: [
     ListComponent,
