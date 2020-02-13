@@ -26,7 +26,7 @@ export class ListComponent {
   onAddItem() {
     const item = {
       id: 'teste' + Math.random(),
-      name: 'Item'
+      content: 'Item'
     };
     this.store.dispatch(fromItem.addItem({ item }));
   }

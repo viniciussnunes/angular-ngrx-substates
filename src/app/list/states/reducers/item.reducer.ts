@@ -8,8 +8,8 @@ export interface State {
 
 const initialState = {
   itens: [
-    { id: 1, name: "teste" },
-    { id: 2, name: "lala" }
+    { id: 1, content: "teste" },
+    { id: 2, content: "lala" }
   ],
   error: undefined
 };

@@ -10,7 +10,7 @@ import { ListService } from './api/list.service';
 import { StoreModule } from '@ngrx/store';
 import * as fromList from './states/reducers/list.reducer';
 import * as fromItem from './states/reducers/item.reducer';
-import * as fromSubitem from './states/reducers/item.reducer';
+import * as fromSubitem from './states/reducers/subitem.reducer';
 
 @NgModule({
   imports: [

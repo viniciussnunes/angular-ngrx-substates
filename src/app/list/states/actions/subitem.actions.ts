@@ -5,15 +5,16 @@ export const addSubitem = createAction(
   props<{ subitem: any }>()
 );
 
-export const getItens = createAction(
+export const getSubitens = createAction(
   '[Subitem] Get'
 );
 
-export const updateItens = createAction(
+export const updateSubitens = createAction(
   '[Subitem] Update',
-  props<{ itens: any[] }>()
+  props<{ subitens: any[] }>()
 );
 
 export const deleteSubitem = createAction(
-  '[Subitem] Delete'
+  '[Subitem] Delete',
+  props<{ id: string }>()
 );

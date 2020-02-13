@@ -7,7 +7,10 @@ export interface State {
 }
 
 const initialState = {
-  subitens: [],
+  subitens: [
+    { id: 1, value: "teste", itemId: 1 },
+    { id: 2, value: "lala", itemId: 2 }
+  ],
   error: undefined
 };
 
@@ -17,8 +20,8 @@ const listReducer = createReducer(
     ...state,
     subitens: [...state.subitens, subitem]
   })),
-  on(Actions.getItens, state => ({ ...state, state })),
-  on(Actions.updateItens, (state, { subitens }) => ({ ...state, subitens })),
+  on(Actions.getSubitens, state => ({ ...state, state })),
+  on(Actions.updateSubitens, (state, { subitens }) => ({ ...state, subitens })),
   on(Actions.deleteSubitem, (state, { id }) => ({
     ...state,
     subitens: state.subitens.slice(0, state.subitens.length - 1)

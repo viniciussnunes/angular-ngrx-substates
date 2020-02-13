@@ -1,18 +1,18 @@
 import { Component, OnInit } from "@angular/core";
-import { Observable } from 'rxjs';
+import { Observable } from "rxjs";
 import { Store, select } from "@ngrx/store";
 
 import { ListState, Item } from "../states";
 
-import * as fromItem from '../states/actions/item.actions';
+import * as fromItem from "../states/actions/item.actions";
+import * as fromSubitem from "../states/actions/subitem.actions";
 
 @Component({
-  selector: 'app-item',
-  templateUrl: './item.component.html',
-  styleUrls: ['./item.component.css']
+  selector: "app-item",
+  templateUrl: "./item.component.html",
+  styleUrls: ["./item.component.css"]
 })
 export class ItemComponent implements OnInit {
-
   itens$: Observable<Item[]>;
 
   constructor(private store: Store<{ list; item; subitem }>) {}
@@ -25,16 +25,12 @@ export class ItemComponent implements OnInit {
     this.store.dispatch(fromItem.deleteItem({ id }));
   }
 
-  onAddSubitem() {
-    const item = {
-      id: 'teste' + Math.random(),
-      name: 'Item'
+  onAddSubitem(itemId: string) {
+    const subitem = {
+      id: "teste" + Math.random(),
+      value: "Subitem",
+      itemId
     };
-    this.store.dispatch(fromItem.addItem({ item }));
+    this.store.dispatch(fromSubitem.addSubitem({ subitem }));
   }
-
-  onDelSubitem(id: string) {
-    this.store.dispatch(fromItem.deleteItem({ id }));
-  }
-
 }
