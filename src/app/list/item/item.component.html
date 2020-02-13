@@ -1,6 +1,6 @@
 <div class="ctm-item" *ngFor="let item of itens$ | async">
 	<p>
-		{{item.name}} works!
+		{{item.content}} works!
 		<button (click)="onDelItem(item.id)">X</button>
 	</p>
 	<app-subitem [itemId]="item.id"></app-subitem>
