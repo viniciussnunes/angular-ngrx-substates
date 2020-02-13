@@ -24,7 +24,7 @@ const listReducer = createReducer(
   on(Actions.updateSubitens, (state, { subitens }) => ({ ...state, subitens })),
   on(Actions.deleteSubitem, (state, { id }) => ({
     ...state,
-    subitens: state.subitens.slice(0, state.subitens.length - 1)
+    subitens: state.subitens.filter(subitem => subitem.id !== id)
   }))
 );
 

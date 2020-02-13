@@ -1,12 +1,12 @@
-import { Component, OnInit } from "@angular/core";
-import { Observable } from 'rxjs';
-import { filter } from 'rxjs/operators';
+import { Component, OnInit, Input } from "@angular/core";
+import { Observable } from "rxjs";
+import { filter, map } from "rxjs/operators";
 
 import { Store, select } from "@ngrx/store";
 
 import { ListState, Item, selectSubitemById } from "../../states";
 
-import * as fromSubitem from '../../states/actions/subitem.actions';
+import * as fromSubitem from "../../states/actions/subitem.actions";
 
 @Component({
   selector: "app-subitem",
@@ -15,13 +15,18 @@ import * as fromSubitem from '../../states/actions/subitem.actions';
 })
 export class SubitemComponent implements OnInit {
 
+  @Input()
+  itemId: string;
+
   subitens$: Observable<Item[]>;
 
   constructor(private store: Store<{ list; item; subitem }>) {}
 
   ngOnInit() {
-    this.subitens$ = this.store.pipe(select(store => store.subitem.subitens));
-    // this.store.pipe(select(store => store.subitem.subitens)).subscribe(x => console.log(x.filter(subitem => subitem.itemId === 1)));
+    this.subitens$ = this.store.pipe(
+      select(store => store.subitem.subitens),
+      map(subitens => subitens.filter(subitem => subitem.itemId === this.itemId))
+    );
   }
 
   onDelSubitem(id: string) {
