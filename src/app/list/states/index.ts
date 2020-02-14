@@ -1,7 +1,3 @@
-import { createSelector } from "@ngrx/store";
-
-import * as fromSubitem from "./reducers/subitem.reucers";
-
 export interface List {
   id: number;
   name: string;

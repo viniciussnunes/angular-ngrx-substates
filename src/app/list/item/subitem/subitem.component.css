@@ -1,3 +1,7 @@
 .ctm-subitem {
   background: yellow;
 }
+
+.ctm-load {
+  background: green;
+}

@@ -2,7 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { Observable } from "rxjs";
 import { Store, select } from "@ngrx/store";
 
-import { ListState, Item } from "../states";
+import { Item } from "../states";
 
 import * as fromItem from "../states/actions/item.actions";
 import * as fromSubitem from "../states/actions/subitem.actions";

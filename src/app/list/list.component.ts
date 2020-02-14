@@ -2,10 +2,9 @@ import { Component } from "@angular/core";
 import { Observable } from "rxjs";
 import { Store, select } from "@ngrx/store";
 
-import { ListState } from "./states";
-
 import * as fromList from "./states/actions/list.actions";
 import * as fromItem from "./states/actions/item.actions";
+import * as fromSubitem from "./states/actions/subitem.actions";
 
 @Component({
   selector: "app-list",
@@ -17,6 +16,10 @@ export class ListComponent {
 
   constructor(private store: Store<{ list; item; subitem }>) {
     this.name$ = store.pipe(select(store => store.list.name));
+  }
+
+  ngOnInit() {
+    this.store.dispatch(fromSubitem.loadSubitens());
   }
 
   onAlterName() {

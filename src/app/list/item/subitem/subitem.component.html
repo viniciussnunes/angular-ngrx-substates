@@ -4,3 +4,4 @@
 		<button (click)="onDelSubitem(subitem.id)">-</button>
 	</p>
 </div>
+<p class="ctm-load" *ngIf="loading$ | async">Loading...</p>

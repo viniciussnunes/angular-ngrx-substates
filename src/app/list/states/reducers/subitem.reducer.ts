@@ -3,24 +3,33 @@ import * as Actions from "../actions/subitem.actions";
 
 export interface State {
   subitens: any[];
+  loading: boolean;
   error: Error;
 }
 
 const initialState = {
-  subitens: [
-    { id: 1, value: "teste", itemId: 1 },
-    { id: 2, value: "lala", itemId: 2 }
-  ],
+  subitens: [],
+  loading: false,
   error: undefined
 };
 
 const listReducer = createReducer(
   initialState,
+  on(Actions.loadSubitens, state => ({ ...state, state, loading: true })),
+  on(Actions.loadSubitensSuccess, (state, { subitens }) => ({
+    ...state,
+    subitens,
+    loading: false
+  })),
+  on(Actions.loadSubitensFailure, (state, { error }) => ({
+    ...state,
+    error,
+    loading: false
+  })),
   on(Actions.addSubitem, (state, { subitem }) => ({
     ...state,
     subitens: [...state.subitens, subitem]
   })),
-  on(Actions.getSubitens, state => ({ ...state, state })),
   on(Actions.updateSubitens, (state, { subitens }) => ({ ...state, subitens })),
   on(Actions.deleteSubitem, (state, { id }) => ({
     ...state,
